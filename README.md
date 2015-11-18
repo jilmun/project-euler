@@ -1,1 +1,1 @@
-# project_euler_R
+# My solutions in R
