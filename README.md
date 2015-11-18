@@ -1,1 +1,1 @@
-# My solutions in R
+# Solutions in R
