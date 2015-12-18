@@ -1,7 +1,7 @@
 # Problem 16: Power digit sum
 
 #.. create digits array for 2^pow
-mult2 <- function(pow) {
+pow2 <- function(pow) {
   arr <- c(rep(0, 999), 2)
   while (pow > 1) {
     carry <- 0
@@ -15,4 +15,4 @@ mult2 <- function(pow) {
   return(arr)
 }
 
-sum(mult2(1000))
+sum(pow2(1000))
