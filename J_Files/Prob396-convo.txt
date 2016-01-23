@@ -1,0 +1,264 @@
+Oct 1, 2012
+9:32:33 AM: Janet Wang/NA/TWG: ok team effort
+9:32:38 AM: Janet Wang/NA/TWG: lol how's the euler prob coming along?
+9:32:39 AM: Janet Wang/NA/TWG: 396
+9:32:53 AM: Raymond Shum/NA/TWG: i think i managed to reduce the complexity of the problem
+9:33:03 AM: Raymond Shum/NA/TWG: i cano nly work on it for another 15 minutes, then gotta prep for a 10, but then i'm free again after that, lol
+9:33:15 AM: Janet Wang/NA/TWG: how'd u reduce the complexity?
+9:33:21 AM: Raymond Shum/NA/TWG: here's the sequence for G(4)
+9:33:22 AM: Raymond Shum/NA/TWG: 2 [1, 0, 0]
+3 [2, 2]
+4 [2, 1]
+5 [2, 0]
+6 [1, 5]
+7 [1, 4]
+8 [1, 3]
+9 [1, 2]
+10 [1, 1]
+11 [1, 0]
+12 [11]
+13 [10]
+14 [9]
+15 [8]
+16 [7]
+17 [6]
+18 [5]
+19 [4]
+20 [3]
+21 [2]
+22 [1]
+4 21
+9:33:39 AM: Raymond Shum/NA/TWG: where the last # is the 0th power, 2nd is 1st power, 3rd is 2nd power, etc...
+9:33:43 AM: Raymond Shum/NA/TWG: and the number is the base
+9:34:05 AM: Raymond Shum/NA/TWG: so, for 4, the 1st element is 100 in base 2, or 1*2^2 + 0*2^1+0*2^0
+9:36:56 AM: Raymond Shum/NA/TWG: it's basically a carrying problem then at this point
+9:37:05 AM: Raymond Shum/NA/TWG: whenever the one's digit hits 0, the remainder ends up being b-1
+9:46:28 AM: Raymond Shum/NA/TWG: ok, well that sped itup by a factor of 10, but it's still not fast enough to calculate G(8) in any reasonable amount of time
+9:46:45 AM: Raymond Shum/NA/TWG: def G2(n):
+    # Takes a number n and returns the # of non zero numbers.
+    numList = base10toB(n, 2)
+    b = 1
+    while len(numList) != 1:
+        #print (b, numList)
+        b += numList[len(numList)-1] + 1 
+        numList[-1] = 0
+        j = len(numList) - 1
+        carry = True
+        while carry == True:
+            numList[j] = b
+            if numList[j-1] != 0:
+                numList[j-1] -= 1
+                carry = False
+            j -= 1
+        if numList[0] == 0: numList.remove(0)
+    #print(b, numList)
+    b += numList[len(numList)-1] - 1
+    print(n, b)
+    return b
+9:46:48 AM: Raymond Shum/NA/TWG: have fun, time for me to do work
+9:46:57 AM: Raymond Shum/NA/TWG: this is going ot be a relay problem, i worko n it then u work on it
+9:48:12 AM: Raymond Shum/NA/TWG: omfg,no wonder why, here's the sequence starting for G(8)
+9:48:13 AM: Raymond Shum/NA/TWG: 1 [1, 0, 0, 0]
+2 [2, 2, 2]
+5 [2, 1, 5]
+11 [2, 0, 11]
+23 [1, 23, 23]
+47 [1, 22, 47]
+95 [1, 21, 95]
+191 [1, 20, 191]
+383 [1, 19, 383]
+767 [1, 18, 767]
+1535 [1, 17, 1535]
+3071 [1, 16, 3071]
+6143 [1, 15, 6143]
+12287 [1, 14, 12287]
+24575 [1, 13, 24575]
+49151 [1, 12, 49151]
+98303 [1, 11, 98303]
+196607 [1, 10, 196607]
+393215 [1, 9, 393215]
+786431 [1, 8, 786431]
+1572863 [1, 7, 1572863]
+3145727 [1, 6, 3145727]
+6291455 [1, 5, 6291455]
+12582911 [1, 4, 12582911]
+25165823 [1, 3, 25165823]
+50331647 [1, 2, 50331647]
+100663295 [1, 1, 100663295]
+201326591 [1, 0, 201326591]
+402653183 [402653183, 402653183]
+805306367 [402653182, 805306367]
+1610612735 [402653181, 1610612735]
+3221225471 [402653180, 3221225471]
+6442450943 [402653179, 6442450943]
+12884901887 [402653178, 12884901887]
+25769803775 [402653177, 25769803775]
+51539607551 [402653176, 51539607551]
+103079215103 [402653175, 103079215103]
+206158430207 [402653174, 206158430207]
+412316860415 [402653173, 412316860415]
+824633720831 [402653172, 824633720831]
+1649267441663 [402653171, 1649267441663]
+3298534883327 [402653170, 3298534883327]
+6597069766655 [402653169, 6597069766655]
+13194139533311 [402653168, 13194139533311]
+26388279066623 [402653167, 26388279066623]
+52776558133247 [402653166, 52776558133247]
+105553116266495 [402653165, 105553116266495]
+211106232532991 [402653164, 211106232532991]
+422212465065983 [402653163, 422212465065983]
+844424930131967 [402653162, 844424930131967]
+1688849860263935 [402653161, 1688849860263935]
+3377699720527871 [402653160, 3377699720527871]
+6755399441055743 [402653159, 6755399441055743]
+13510798882111487 [402653158, 13510798882111487]
+27021597764222975 [402653157, 27021597764222975]
+54043195528445951 [402653156, 54043195528445951]
+108086391056891903 [402653155, 108086391056891903]
+216172782113783807 [402653154, 216172782113783807]
+432345564227567615 [402653153, 432345564227567615]
+864691128455135231 [402653152, 864691128455135231]
+1729382256910270463 [402653151, 1729382256910270463]
+3458764513820540927 [402653150, 3458764513820540927]
+6917529027641081855 [402653149, 6917529027641081855]
+13835058055282163711 [402653148, 13835058055282163711]
+27670116110564327423 [402653147, 27670116110564327423]
+55340232221128654847 [402653146, 55340232221128654847]
+110680464442257309695 [402653145, 110680464442257309695]
+221360928884514619391 [402653144, 221360928884514619391]
+442721857769029238783 [402653143, 442721857769029238783]
+885443715538058477567 [402653142, 885443715538058477567]
+1770887431076116955135 [402653141, 1770887431076116955135]
+3541774862152233910271 [402653140, 3541774862152233910271]
+7083549724304467820543 [402653139, 7083549724304467820543]
+14167099448608935641087 [402653138, 14167099448608935641087]
+28334198897217871282175 [402653137, 28334198897217871282175]
+56668397794435742564351 [402653136, 56668397794435742564351]
+113336795588871485128703 [402653135, 113336795588871485128703]
+226673591177742970257407 [402653134, 226673591177742970257407]
+453347182355485940514815 [402653133, 453347182355485940514815]
+906694364710971881029631 [402653132, 906694364710971881029631]
+1813388729421943762059263 [402653131, 1813388729421943762059263]
+3626777458843887524118527 [402653130, 3626777458843887524118527]
+7253554917687775048237055 [402653129, 7253554917687775048237055]
+14507109835375550096474111 [402653128, 14507109835375550096474111]
+29014219670751100192948223 [402653127, 29014219670751100192948223]
+58028439341502200385896447 [402653126, 58028439341502200385896447]
+116056878683004400771792895 [402653125, 116056878683004400771792895]
+232113757366008801543585791 [402653124, 232113757366008801543585791]
+464227514732017603087171583 [402653123, 464227514732017603087171583]
+928455029464035206174343167 [402653122, 928455029464035206174343167]
+
+9:48:23 AM: Raymond Shum/NA/TWG: 1st digit is the base
+9:48:25 AM: Janet Wang/NA/TWG: LOL
+9:48:45 AM: Raymond Shum/NA/TWG: i'm sure I can probably multiply the two numbers together but no time to think about that
+9:49:01 AM: Raymond Shum/NA/TWG: no that's not true
+9:49:18 AM: Janet Wang/NA/TWG: well, here's something interesting.. the sequence gets stuck on some number, so it monotonically increases to some number, then decreases by 1 after that
+9:49:34 AM: Janet Wang/NA/TWG: so for starting number,
+9:49:37 AM: Janet Wang/NA/TWG: 1: 1 0
+9:49:43 AM: Janet Wang/NA/TWG: 2: 2 2 1 0
+9:49:48 AM: Janet Wang/NA/TWG: 3: 3 3 3 2 1 0
+9:49:53 AM: Janet Wang/NA/TWG: 4: 4 8 9 10 11 11 11 11 11 11 11 10 9 8 7 6 5 4 3 2 1 0
+9:49:59 AM: Janet Wang/NA/TWG: 5: 5 9 15 17 19 21 23 24 25 26 27 28 29 30 31 31 31 31 31 31 31 31 31 31 31 31 31 31 31 31 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0
+9:50:08 AM: Raymond Shum/NA/TWG: hm
+9:50:16 AM: Janet Wang/NA/TWG: there are 17 31's in the 5 series
+9:50:23 AM: Janet Wang/NA/TWG: 6: 6 11 17 25 35 39 43 47 51 55 59 62 65 68 71 74 77 80 83 86 89 92 95 97 99 101 103 105 107 109 111 113 115 117 119 121 123 125 127 129 131 133 135 137 139 141 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 16...
+9:50:26 AM: Raymond Shum/NA/TWG: so need to figure out how long it keeps increasing
+9:50:32 AM: Raymond Shum/NA/TWG: and then how long it gets stuck
+9:50:36 AM: Raymond Shum/NA/TWG: and then that # it gets stuck on
+9:51:02 AM: Janet Wang/NA/TWG: lol
+9:51:40 AM: Janet Wang/NA/TWG: there's some pattern.. iono why tho
+9:51:46 AM: Janet Wang/NA/TWG: the 4 series increases by 1
+9:51:57 AM: Janet Wang/NA/TWG: the 5 series by 2, then 1
+9:52:13 AM: Janet Wang/NA/TWG: the 6 by 4 6 8 10 and so then by 2 and then by 1
+11:25:56 AM: Janet Wang/NA/TWG: are u there?
+11:25:59 AM: Raymond Shum/NA/TWG: yeah
+11:54:00 AM: Raymond Shum/NA/TWG: I got G(8) to calculate in 32 seconds, assuming it's even correct
+11:54:26 AM: Janet Wang/NA/TWG: that's not bad
+11:54:38 AM: Janet Wang/NA/TWG: if the other ones aren't exponentially larger
+11:54:39 AM: Raymond Shum/NA/TWG: and G(9) just gave me a memory error
+11:54:41 AM: Janet Wang/NA/TWG: lol
+11:54:45 AM: Raymond Shum/NA/TWG: Runtime: 0.0012s
+2 3
+Runtime: 0.0007s
+3 5
+Runtime: 0.0001s
+4 21
+Runtime: 0.0005s
+5 61
+Runtime: 0.0001s
+6 381
+Runtime: 0.0007s
+7 2045
+Runtime: 32.4748s
+8 7722374141
+Traceback (most recent call last):
+  File "<pyshell#314>", line 1, in <module>
+    P396b(16)
+  File "E:\Euler\euler.py", line 5585, in P396b
+    ans += G4(i)
+  File "E:\Euler\euler.py", line 5574, in G4
+    b = (b+numList[-1])*2**(numList[-2]-1)+2**(numList[-2])-1
+MemoryError
+11:56:05 AM: Raymond Shum/NA/TWG: ok, i modified it andf ixed it but no dice, solution isn't right
+11:56:19 AM: Janet Wang/NA/TWG: what's your code?
+12:04:45 PM: Raymond Shum/NA/TWG: def G4(n):
+    timer()
+    # Takes a number n and returns the # of non zero numbers.
+    numList = base10toB(n, 2)
+    b = 1
+    while len(numList) != 2:
+        #print (b, numList)
+        if (numList[-1] != 0) and (numList[-2] != 0):
+            b = (b+numList[-1])*pow(2, numList[-2]-1, 10**10)+pow(2, numList[-2], 10**10) - 1
+            b = b % 10**11   
+            #b = (b+numList[-1])*2**(numList[-2]-1)+2**(numList[-2])-1
+            numList[-2] = 0
+            numList[-1] = b
+        else:
+            b += numList[len(numList)-1] + 1 
+            numList[-1] = 0
+
+        j = len(numList) - 1
+        carry = False
+        if numList[-1] == 0: carry = True
+        while carry == True:
+            numList[j] = b
+            if numList[j-1] != 0:
+                numList[j-1] -= 1
+                carry = False
+            j -= 1
+        if numList[0] == 0: numList.remove(0)
+    #print(b, numList)
+    b = (b+numList[-1])*pow(2, numList[-2]-1, 10**10)+pow(2, numList[-2], 10**10) - 1
+    b = (2*b - 1) % 10**10
+    timer()
+    print(n, b)
+    return b
+12:05:01 PM: Raymond Shum/NA/TWG: I'm trying to reduce the calculations by just taking the last 10 digits and going from there but that doesn't seem to work
+12:05:08 PM: Raymond Shum/NA/TWG: it worked for G(8)
+12:05:19 PM: Raymond Shum/NA/TWG: but i guess not for the higher #'s, that or unless I have G(8) calculated wrong
+12:05:52 PM: Raymond Shum/NA/TWG: and of course
+12:05:56 PM: Raymond Shum/NA/TWG: i am an idiot
+12:05:57 PM: Raymond Shum/NA/TWG: it works
+12:06:02 PM: Raymond Shum/NA/TWG: i put the last 11 digits, not 9 -_-
+12:06:27 PM: Janet Wang/NA/TWG: lol
+12:06:28 PM: Janet Wang/NA/TWG: good job!
+12:11:40 PM: Raymond Shum/NA/TWG: now time to work. damn mexico
+12:11:55 PM: Janet Wang/NA/TWG: lol
+12:12:07 PM: Raymond Shum/NA/TWG: Congratulations, the answer you gave to problem 396 is correct.
+
+You are the 88th person to have solved this problem.
+
+You have earned 2 new awards:
+
+One In A Hundred: Be among the first hundred to solve a problem
+On The Ball: Solve the most recent problem
+12:12:10 PM: Raymond Shum/NA/TWG: i need to frame this
+12:12:53 PM: Janet Wang/NA/TWG: lol
+1:07:56 PM: Raymond Shum/NA/TWG: andi f u need a check: the last 10 digits of G(8) 7722374141
+1:52:55 PM: Janet Wang/NA/TWG: i get.. infinity
+1:53:36 PM: Raymond Shum/NA/TWG: well, what are the last 9 digits of infinity
+1:53:44 PM: Janet Wang/NA/TWG: nan error
+1:55:33 PM: Raymond Shum/NA/TWG: doesn't work for 8?
+1:58:15 PM: Janet Wang/NA/TWG: no -_-
