@@ -2,6 +2,8 @@
 
 These are being actively worked on. Each file contains the solution to one problem. 
 
+My friend key: `880164_bUbsieLQ6gnrexfMRjQSzUW33TwNZ2nA`
+
 ## J Files
 
 I am no longer working on these. Here is an index of the problems contained in each file:
